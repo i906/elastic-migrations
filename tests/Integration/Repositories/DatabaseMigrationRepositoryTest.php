@@ -2,16 +2,16 @@
 
 namespace ElasticMigrations\Tests\Integration\Repositories;
 
-use ElasticMigrations\Repositories\MigrationRepository;
+use ElasticMigrations\Repositories\DatabaseMigrationRepository;
 use ElasticMigrations\Tests\Integration\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * @covers \ElasticMigrations\Repositories\MigrationRepository
+ * @covers \ElasticMigrations\Repositories\DatabaseMigrationRepository
  */
-final class MigrationRepositoryTest extends TestCase
+final class DatabaseMigrationRepositoryTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -20,7 +20,7 @@ final class MigrationRepositoryTest extends TestCase
      */
     private $table;
     /**
-     * @var MigrationRepository
+     * @var DatabaseMigrationRepository
      */
     private $migrationRepository;
 
@@ -36,7 +36,7 @@ final class MigrationRepositoryTest extends TestCase
             ['migration' => '2018_12_01_081000_create_test_index', 'batch' => 1],
         ]);
 
-        $this->migrationRepository = new MigrationRepository();
+        $this->migrationRepository = new DatabaseMigrationRepository();
     }
 
     public function test_record_can_be_inserted(): void

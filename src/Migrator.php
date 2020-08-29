@@ -5,7 +5,6 @@ namespace ElasticMigrations;
 use ElasticMigrations\Factories\MigrationFactory;
 use ElasticMigrations\Filesystem\MigrationFile;
 use ElasticMigrations\Filesystem\MigrationStorage;
-use ElasticMigrations\Repositories\MigrationRepository;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Collection;
 
@@ -16,7 +15,7 @@ class Migrator implements ReadinessInterface
      */
     private $output;
     /**
-     * @var MigrationRepository
+     * @var MigrationRepositoryInterface
      */
     private $migrationRepository;
     /**
@@ -29,7 +28,7 @@ class Migrator implements ReadinessInterface
     private $migrationFactory;
 
     public function __construct(
-        MigrationRepository $migrationRepository,
+        MigrationRepositoryInterface $migrationRepository,
         MigrationStorage $migrationStorage,
         MigrationFactory $migrationFactory
     ) {

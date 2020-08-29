@@ -2,6 +2,7 @@
 
 namespace ElasticMigrations\Repositories;
 
+use ElasticMigrations\MigrationRepositoryInterface;
 use ElasticMigrations\ReadinessInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use stdClass;
 
-final class MigrationRepository implements ReadinessInterface
+final class DatabaseMigrationRepository implements ReadinessInterface, MigrationRepositoryInterface
 {
     /**
      * @var string
