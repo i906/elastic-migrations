@@ -10,6 +10,7 @@ use ElasticMigrations\Console\ResetCommand;
 use ElasticMigrations\Console\RollbackCommand;
 use ElasticMigrations\Console\StatusCommand;
 use ElasticMigrations\Repositories\DatabaseMigrationRepository;
+use ElasticMigrations\Repositories\ElasticMigrationRepository;
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 
 final class ServiceProvider extends AbstractServiceProvider
@@ -65,6 +66,8 @@ final class ServiceProvider extends AbstractServiceProvider
             $driver = $app['config']['elastic.migrations.driver'];
 
             switch ($driver) {
+                case 'elastic':
+                    return $app->make(ElasticMigrationRepository::class);
                 default:
                     return $app->make(DatabaseMigrationRepository::class);
             }
