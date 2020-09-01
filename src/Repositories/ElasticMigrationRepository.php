@@ -140,7 +140,7 @@ final class ElasticMigrationRepository implements ReadinessInterface, MigrationR
 
         return collect($hits)
             ->map(static function ($h) {
-                return $h['_source'];
+                return $h['_source']['migration'];
             });
     }
 
@@ -155,7 +155,7 @@ final class ElasticMigrationRepository implements ReadinessInterface, MigrationR
 
         return collect($hits)
             ->map(static function ($h) {
-                return $h['_source'];
+                return $h['_source']['migration'];
             });
     }
 
