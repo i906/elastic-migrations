@@ -5,6 +5,7 @@ namespace ElasticMigrations\Repositories;
 use ElasticAdapter\Indices\Index;
 use ElasticAdapter\Indices\IndexManager;
 use ElasticAdapter\Indices\Mapping;
+use ElasticAdapter\Indices\Settings;
 use ElasticMigrations\MigrationRepositoryInterface;
 use ElasticMigrations\ReadinessInterface;
 use Elasticsearch\Client;
@@ -165,7 +166,13 @@ final class ElasticMigrationRepository implements ReadinessInterface, MigrationR
             ->text('migration')
             ->integer('batch');
 
-        $index = new Index($this->index, $mapping);
+        $settings = (new Settings())
+            ->index([
+                'number_of_shards' => 1,
+                'number_of_replicas' => 0,
+            ]);
+
+        $index = new Index($this->index, $mapping, $settings);
 
         $this->indexManager->create($index);
     }
